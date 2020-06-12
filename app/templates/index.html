@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <meta http-equiv="expires" content="0">
+        <link rel="stylesheet" href="/static/app.css">
+    </head>
+    <body>
+        <div class="header">
+            <h1><a href="/">University Management System</a></h1>
+            <p>{{user.username}} {{user.groups}} | <a href="/logout">Logout</a></p>
+        </div>
+        <div class="action-links-container">
+        {% for action in actions %}
+            <a class='action-links' href="{{action.url}}">{{action.name}}</a>
+        {% endfor %}
+        </div>
+    </body>
+</html>

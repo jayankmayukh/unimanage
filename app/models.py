@@ -1,27 +1,36 @@
-from django.db import models
+from django.db.models import (
+    Model, ForeignKey, CharField, TextField, DateField, BooleanField, 
+    ManyToManyField, SET_NULL, CASCADE
+)
+from django.contrib.auth.models import User
 
-# Create your models here.
-class Person(models.Model):
-    name = models.CharField(max_length=50)
-    contact_number = models.CharField(max_length=10)
-    def __str__(self):
-        return self.name
+class Location(Model):
+    manager = ForeignKey(User, SET_NULL, null=True)
+    room_number = CharField(max_length=10)
 
-class Location(models.Model):
-    caretaker = models.ForeignKey(Person, models.CASCADE)
-    room_number = models.CharField(max_length=10)
-
-class Asset(models.Model):
-    name = models.CharField(max_length=50)
-    details = models.TextField()
-    contact_person = models.ForeignKey(Person, models.CASCADE)
-    expiry_date = models.DateField()
-    vendor = models.CharField(max_length=50)
+class Asset(Model):
+    name = CharField(max_length=50)
+    details = TextField()
+    contact_person = ForeignKey(User, SET_NULL, related_name='asset_manage_set', null=True)
+    expiry_date = DateField()
+    vendor = CharField(max_length=50)
+    users = ManyToManyField(User, related_name='asset_use_set')
 
 class SoftwareAsset(Asset):
-    version = models.CharField(max_length=15)
-    license_key = models.CharField(max_length=30)
+    version = CharField(max_length=15)
+    license_key = CharField(max_length=30)
 
 class PhysicalAsset(Asset):
-    location = models.ForeignKey(Location, models.CASCADE)
+    location = ForeignKey(Location, SET_NULL, null=True)
 
+class AssetRequest(Model):
+    creator = ForeignKey(User, CASCADE, related_name='created_request_set')
+    approved = BooleanField(default=False)
+    rejected = BooleanField(default=False)
+    details = TextField()
+
+class AssetAccessRequest(AssetRequest):
+    requested_asset = ForeignKey(Asset, CASCADE)
+
+class AssetAcquireRequest(AssetRequest):
+    requested_asset_detail = TextField()
