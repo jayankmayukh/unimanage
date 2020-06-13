@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/app.css">
+    </head>
+    <body>
+        <div class="header">
+            <h1><a href="/">University Management System</a></h1>
+            <p>{{user.username}} {{user.groups}} | <a href="/logout">Logout</a></p>
+        </div>
+        <h3>View Asset Access Requests</h3>
+        <a style="cursor: pointer; padding-left: 10px;" onClick="javascript:history.go(-1); return false;"><- Go Back</a>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Details</th>
+                        <th>Asset Requested</th>
+                        <th>Approved</th>
+                        <th>Rejected</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+
+                    <tr>
+                        <td>{{item.id}}</td>
+                        <td>{{item.details}}</td>
+                        <td>{{item.requested_asset}}</td>
+                        <td>{{item.approved}}</td>
+                        <td>{{item.rejected}}</td>
+                        <td><a href="/delete_asset_request/?id={{item.id}}" style="color: red;">Delete</a></td>
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

@@ -1,9 +1,10 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import (SoftwareAsset, PhysicalAsset, Location, AssetRequest)
+from .models import (SoftwareAsset, PhysicalAsset, Location, AssetAccessRequest, AssetAcquireRequest)
 
-admin.site.register(AssetRequest)
+admin.site.register(AssetAccessRequest)
+admin.site.register(AssetAcquireRequest)
 admin.site.register(SoftwareAsset)
 admin.site.register(PhysicalAsset)
 admin.site.register(Location)

@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/app.css">
+    </head>
+    <body>
+        <div class="header">
+            <h1><a href="/">University Management System</a></h1>
+            <p>{{user.username}} {{user.groups}} | <a href="/logout">Logout</a></p>
+        </div>
+        <h3>View Accessed Assets</h3>
+        <a style="cursor: pointer; padding-left: 10px;" onClick="javascript:history.go(-1); return false;"><- Go Back</a>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Details</th>
+                        <th>Contact Person</th>
+                        <th>Expiry Date</th>
+                        <th>Vendor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for asset in accessed_assets %}
+
+                    <tr>
+                        <td><a href="/view_asset/{{asset.id}}">{{asset.id}}</a></td>
+                        <td>{{asset.name}}</td>
+                        <td>{{asset.details}}</td>
+                        <td>{{asset.contact_person}}</td>
+                        <td>{{asset.expiry_date}}</td>
+                        <td>{{asset.vendor}}</td>
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

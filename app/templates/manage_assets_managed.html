@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/app.css">
+    </head>
+    <body>
+        <div class="header">
+            <h1><a href="/">University Management System</a></h1>
+            <p>{{user.username}} {{user.groups}} | <a href="/logout">Logout</a></p>
+        </div>
+        <h3>Manage Assets Managed by Me</h3>
+        <a style="cursor: pointer; padding-left: 10px;" onClick="javascript:history.go(-1); return false;"><- Go Back</a>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Details</th>
+                        <th>Contact Person</th>
+                        <th>Expiry Date</th>
+                        <th>Vendor</th>
+                        {% if delete %}
+                        <th>Delete</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+
+                    <tr>
+                        <td><a href="/edit_asset/{{item.id}}">{{item.id}}</a></td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.details}}</td>
+                        <td>{{item.contact_person}}</td>
+                        <td>{{item.expiry_date}}</td>
+                        <td>{{item.vendor}}</td>
+                        {% if delete %}
+                        <td><a href="/delete_asset/?id={{item.id}}" style="color: red;">Delete</a></td>
+                        {% endif %}
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

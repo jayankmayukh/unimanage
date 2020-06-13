@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/app.css">
+        <script>
+            document.addEventListener("DOMContentLoaded", function(event){
+                document.getElementById('id_expiry_date').setAttribute('type', 'date');
+            });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1><a href="/">University Management System</a></h1>
+            <p>{{user.username}} {{user.groups}} | <a href="/logout">Logout</a></p>
+        </div>
+        <h3>{{title}}</h3>
+        <a style="cursor: pointer; padding-left: 10px;" onClick="javascript:history.go(-1); return false;"><- Go Back</a>
+        <form class="form {% if not edit %} no-pointer {% endif %}" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        {% if edit %}
+        <input type="submit" style="background-color: #41768f; margin-top: 20px;">
+        {% endif %}
+        </form>
+    </body>
+</html>

@@ -6,18 +6,24 @@ body {
     position: fixed;
     top: 50%;
     left: 50%;
+    width: 400px;
     transform: translate(-50%, -50%);
 }
+
+a {
+    text-decoration: none;
+    color: cornflowerblue;
+}
+
 .action-links {
     padding: 5px 0px 2px 0px;
     color: #333;
-    width: 400px;
     height: 25px;
     display: block;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    margin: 10px;
+    margin: 10px 0px;
     background-color: #eee;
     border-radius: 5px;
 }
@@ -92,4 +98,53 @@ body {
 }
 .login-container #submit {
     background-color: #79aec8;
+}
+
+.table-container table{
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+.table-container td, .table-container th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.table-container tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+.table-container tr:hover {
+    background-color: #ddd;
+}
+
+.table-container th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #41768f;
+    color: white;
+}
+
+.no-pointer {
+    pointer-events: none;
+}
+
+.form {
+    width: 800px;
+    margin: 10px 30px;
+}
+
+.form input, textarea, select {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #ecf9ff;
+}
+
+.form option {
+    background-color: white;
+    font-size: 12px;
 }

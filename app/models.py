@@ -7,6 +7,8 @@ from django.contrib.auth.models import User
 class Location(Model):
     manager = ForeignKey(User, SET_NULL, null=True)
     room_number = CharField(max_length=10)
+    def __str__(self):
+        return 'room number {}'.format(self.room_number)
 
 class Asset(Model):
     name = CharField(max_length=50)
@@ -15,6 +17,8 @@ class Asset(Model):
     expiry_date = DateField()
     vendor = CharField(max_length=50)
     users = ManyToManyField(User, related_name='asset_use_set')
+    def __str__(self):
+        return self.name
 
 class SoftwareAsset(Asset):
     version = CharField(max_length=15)

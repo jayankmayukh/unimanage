@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/app.css">
+    </head>
+    <body>
+        <div class="header">
+            <h1><a href="/">University Management System</a></h1>
+            <p>{{user.username}} {{user.groups}} | <a href="/logout">Logout</a></p>
+        </div>
+        <h3>{{title}}</h3>
+        <a style="cursor: pointer; padding-left: 10px;" onClick="javascript:history.go(-1); return false;"><- Go Back</a>
+        <form class="form no-pointer" method="POST">
+        {{ form }}
+        </form>
+        <form class="form" method="POST">
+            {% csrf_token %}
+            {% if edit %}
+            <button name="action" type="submit" value="approve">Approve</button>
+            <button name="action" type="submit" value="reject">Reject</button>
+            {% endif %}
+        </form>
+    </body>
+</html>
